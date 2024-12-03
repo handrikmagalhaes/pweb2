@@ -13,6 +13,6 @@ app.get('/', (req,res) => {
 //Arquivos estáticos
 app.use(express.static('static'))
 
-app.listen(3000, function (){
+app.listen(3000, () => {
     console.log('Aplicação rodando')
 })
