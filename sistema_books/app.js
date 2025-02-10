@@ -17,6 +17,13 @@ app.get('/', (req,res) => {
     res.sendFile(`${basePath}/index.html`)
 })
 
+app.get('/livros', (req, res) => {
+    res.sendFile(`${basePath}/livros.html`)
+})
+app.get('/formlivro', (req, res) => {
+    res.sendFile(`${basePath}/formlivro.html`)
+})
+
 //Arquivos estáticos
 app.use(express.static('static'))
 
