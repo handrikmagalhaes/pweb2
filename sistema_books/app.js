@@ -5,7 +5,14 @@ const basePath = path.join(__dirname);
 // Invocando o express
 const app = express()
 
-//Landing page
+//Ler o body como JSON
+app.use(
+    express.urlencoded({
+      extended: true,
+    }),
+  )
+
+  //Landing page
 app.get('/', (req,res) => {
     res.sendFile(`${basePath}/index.html`)
 })
