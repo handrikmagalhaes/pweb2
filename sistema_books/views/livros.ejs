@@ -101,8 +101,26 @@
         </div>
         <div id="conteudo" class="col-12 col-lg-8 col-xl-9">
             <main>
+                <a role="button" class="btn btn-success mt-3 mb-3" href="/formlivro">Inserir Livro</a>
+                <table class="table table-stripped">
+                    <thead>
+                        <th>Título</th>
+                        <th>Sub-Título</th>
+                        <th>Autor</th>
+                        <th>Gênero</th>
+                    </thead>
+                    <tbody>
+                        <% livros.forEach(livro => { %>
+                            <tr>
+                                <td><%= livro.titulo %></td>
+                                <td><%= livro.subtitulo %></td>
+                                <td><%= livro.autor %></td>
+                                <td><%= livro.genero %></td>
+                            </tr> 
+                        <%})%>
+                    </tbody>
+                </table>
 
-                <h1>Formulário</h1>
             </main>
         </div>
     </div>
