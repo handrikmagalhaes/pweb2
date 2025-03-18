@@ -110,14 +110,14 @@
                         <th>Gênero</th>
                     </thead>
                     <tbody>
-                        <% livros.forEach(livro => { %>
+                        <% livros.forEach(function(livro) { %>
                             <tr>
                                 <td><%= livro.titulo %></td>
                                 <td><%= livro.subtitulo %></td>
                                 <td><%= livro.autor %></td>
                                 <td><%= livro.genero %></td>
                             </tr> 
-                        <%})%>
+                        <%});%>
                     </tbody>
                 </table>
 

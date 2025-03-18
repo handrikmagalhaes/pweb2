@@ -1,7 +1,8 @@
 const express = require('express')
 const path = require('path')
+const sqlite3 = require('sqlite3');
 const basePath = path.join(__dirname);
-const livros = [
+/*const livros = [
     {
         "titulo": "O Iluminado",
         "subtitulo": "",
@@ -20,12 +21,14 @@ const livros = [
         "autor": "Jorge Amado",
         "genero": "Romance"
     }
-]
-const sqlite3 = require('sqlite3').verbose();
+]*/
+
 
 // Invocando o express
 const app = express()
-let db = new sqlite3.Database('petshop.db');
+
+//Criando/selecionando a base de dados
+let db = new sqlite3.Database('livros.db');
 
 //Ler o body como JSON
 app.use(
@@ -42,7 +45,10 @@ app.get('/', (req,res) => {
 })
 
 app.get('/livros', (req, res) => {
-    res.render('livros', {'livros':livros});
+    db.all('SELECT * FROM livros order by titulo', function(err, livros){
+        res.render('livros', {livros: livros})
+    })
+    
 })
 app.get('/formlivro', (req, res) => {
     res.sendFile(`${basePath}/formlivro.html`)
