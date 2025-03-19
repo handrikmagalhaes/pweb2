@@ -1,0 +1,5 @@
+01 Criar a aplicação Node.JS: npm init -y
+02 Criar um servidor web apenas com NodeJS
+03 Instalar o módulo minimist
+04 Criar uma rotina que leia os arquimentos e mostre na tela, no exemplo do arquivo mostramos o valor do arqumento nome através do comando node app.js --nome <seunome>
+Ex: node app.js --nome Handrik - O sistema vai mostrar o nome digitado.

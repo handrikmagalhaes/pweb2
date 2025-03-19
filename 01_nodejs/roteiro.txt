@@ -1,0 +1,2 @@
+01 Criar a aplicação Node.JS: npm init -y
+02 Criar um servidor web apenas com NodeJS
