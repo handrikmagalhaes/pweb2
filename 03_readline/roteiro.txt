@@ -1,0 +1,4 @@
+01 Criar a aplicação Node.JS: npm init -y
+02 Instalar o módulo readline
+04 Criar uma rotina que faça uma pergunta ao usuário e espere a resposta.
+05 Mostrar a resposta
