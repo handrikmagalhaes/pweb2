@@ -3,11 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="async.js"></script>
+    <title>Async/Await</title>
+    
 </head>
 <body>
-    <div id="images">
-    </div>
+    <script>
+       function primeiraFoto(){
+        return new Promise((resolve) => {
+            setTimeout( ()=> {
+                const img0 = document.createElement("img");
+                img0.setAttribute("src","sw0.jpg")
+                img0.setAttribute("width", "150px")
+                img0.setAttribute("height", "125px")
+                document.body.appendChild(img0);
+                resolve()
+            }, 1000)
+        })
+
+        }
+        function segundaFoto(){
+        return new Promise((resolve) => {
+            setTimeout( ()=> {
+                const img0 = document.createElement("img");
+                img0.setAttribute("src","sw1.jpg")
+                img0.setAttribute("width", "150px")
+                img0.setAttribute("height", "125px")
+                document.body.appendChild(img0);
+                resolve()
+            }, 5000)
+        })
+    }
+        function terceiraFoto(){
+        return new Promise((resolve) => {
+            setTimeout( ()=> {
+                const img0 = document.createElement("img");
+                img0.setAttribute("src","sw2.jpg")
+                img0.setAttribute("width", "150px")
+                img0.setAttribute("height", "125px")
+                document.body.appendChild(img0);
+                resolve()
+            }, 3000)
+        })
+        }
+
+        async function mostraFotos(){
+            await primeiraFoto()
+            await segundaFoto()
+            await terceiraFoto()
+        }
+
+        mostraFotos()
+    </script>
 </body>
 </html>
