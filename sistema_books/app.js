@@ -48,14 +48,21 @@ app.get('/livros', (req, res) => {
     db.all('SELECT * FROM livros order by titulo', function(err, livros){
         res.render('livros', {livros: livros})
     })
-    
+   
 })
 app.get('/formlivro', (req, res) => {
-    res.sendFile(`${basePath}/formlivro.html`)
+    res.render('formlivro', {dados:""});
 })
+
 app.post('/livro', (req, res) => {
-    console.log(req.body);
-    res.send("Livro Cadastrado");
+    try {
+        db.run('INSERT INTO livros VALUES (?, ?, ?, ?)', req.body.titulo, req.body.subtitulo, req.body.autor, req.body.genero);
+    } catch {
+        res.send("Erro")
+    }
+    db.all('SELECT * FROM livros order by titulo', function(err, livros){
+        res.render('livros', {livros: livros})
+    })
 })
 
 //Arquivos estáticos
