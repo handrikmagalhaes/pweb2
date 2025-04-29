@@ -26,6 +26,7 @@ const basePath = path.join(__dirname);
 
 // Invocando o express
 const app = express()
+app.use(express.static(`static`))
 
 //Criando/selecionando a base de dados
 let db = new sqlite3.Database('livros.db');
@@ -47,22 +48,44 @@ app.get('/', (req,res) => {
 app.get('/livros', (req, res) => {
     db.all('SELECT * FROM livros order by titulo', function(err, livros){
         res.render('livros', {livros: livros})
+        console.log(livros)
     })
    
 })
-app.get('/formlivro', (req, res) => {
+app.get('/livros/inserir', (req, res) => {
     res.render('formlivro', {dados:""});
 })
 
-app.post('/livro', (req, res) => {
+app.post('/livros/inserir', (req, res) => {
     try {
-        db.run('INSERT INTO livros VALUES (?, ?, ?, ?)', req.body.titulo, req.body.subtitulo, req.body.autor, req.body.genero);
+        db.run('INSERT INTO livros VALUES (null, ?, ?, ?, ?)', req.body.titulo, req.body.subtitulo, req.body.autor, req.body.genero);
     } catch {
         res.send("Erro")
     }
-    db.all('SELECT * FROM livros order by titulo', function(err, livros){
+    res.redirect('/livros')
+    /*db.all('SELECT * FROM livros order by titulo', function(err, livros){
         res.render('livros', {livros: livros})
+    })*/
+})
+
+app.get('/livros/alterar/:id', (req, res) => {
+    const id = req.params.id
+    db.all(`SELECT * FROM livros WHERE id = ${id}`, function(err, livros){
+        console.log(livros)
+        res.render("formalteracao", {livros})
     })
+
+})
+
+app.post('/livros/alterar', (req,res)=> {
+    console.log(req.body)
+    try {
+        db.run('UPDATE livros SET titulo = ?, subtitulo = ?, autor = ?, genero = ? WHERE id = ?', req.body.titulo, req.body.subtitulo, req.body.autor, req.body.genero, req.body.id);
+    } catch {
+        res.send("Erro")
+    }
+    res.redirect('/livros')
+
 })
 
 //Arquivos estáticos
